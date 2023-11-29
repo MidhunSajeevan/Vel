@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 
 public class Damagable : MonoBehaviour
 {
@@ -13,9 +13,21 @@ public class Damagable : MonoBehaviour
     private bool _isAlive = true;
     [SerializeField]
     private bool IsInvincible = false;
+
+    public bool IsHit {
+        get
+        {
+            return _animatior.GetBool(AnimationStrings.IsHit);
+        }
+        private set
+        {
+            _animatior.SetBool(AnimationStrings.IsHit, value);  
+        }
+    }
+
     private float timeSincehit=0f  ;
     private float invinciblityTime=0.25f;
-
+    public UnityEvent<int, Vector2> damagableHit;
     public int MaxHealth
     {
         get
@@ -79,13 +91,18 @@ public class Damagable : MonoBehaviour
         }
     
     }
-    public void Hit(int damage)
+    public bool Hit(int damage,Vector2 knockBack)
     {
         if(IsAlive &&  !IsInvincible)
         {
             Health -=damage;
             IsInvincible = true;
-        }
+            IsHit = true;
+            damagableHit?.Invoke(damage, knockBack);
 
+            return true;
+        }
+        return false;
     }
+    
 }

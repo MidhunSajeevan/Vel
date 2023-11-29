@@ -11,12 +11,16 @@ public class EnemyMovements : MonoBehaviour
     public float breakSpeed;
     private Vector2 _walkDirectionVector= Vector2.right;
     private TouchingDirection _touchingDirection;
+    [SerializeField]
     private DetectionZone _detectionZone;
+    [SerializeField]
+    private DetectionZone _clifDetectionZone;
     public enum WalkableDirection{ right, left }
 
     private WalkableDirection   _walkDirecton;
     private bool _hasTarget;
     private Animator _animator;
+    private Damagable _damagable;
     public WalkableDirection WalkDirection
     {
         get { return _walkDirecton; }
@@ -60,8 +64,8 @@ public class EnemyMovements : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _touchingDirection = GetComponent<TouchingDirection>();
-        _detectionZone = GetComponentInChildren<DetectionZone>();
         _animator = GetComponent<Animator>();
+        _damagable = GetComponent<Damagable>();
     }
 
     private void Update()
@@ -73,14 +77,15 @@ public class EnemyMovements : MonoBehaviour
     {
         if (CanMove) 
         {
-            _rigidbody.velocity = new Vector2(speed * _walkDirectionVector.x, _rigidbody.velocity.y);
+            if(!_damagable.IsHit)
+                _rigidbody.velocity = new Vector2(speed * _walkDirectionVector.x, _rigidbody.velocity.y);
         }
         else
         {
             _rigidbody.velocity = new Vector2(Mathf.Lerp(_rigidbody.velocity.x , 0 , breakSpeed ), _rigidbody.velocity.y );
         }
        
-        if(_touchingDirection.IsGrounded && _touchingDirection.IsOnwall)
+        if(_touchingDirection.IsGrounded && _touchingDirection.IsOnwall || _clifDetectionZone._colliders.Count == 0)
         {
             FlipDirecion();
         }
@@ -98,5 +103,9 @@ public class EnemyMovements : MonoBehaviour
         {
             Debug.LogError("Not Working ");
         }
+    }
+    public void OnHit(int damage, Vector2 knockBack)
+    {
+        _rigidbody.velocity = new Vector2(knockBack.x, _rigidbody.velocity.y + knockBack.y);
     }
 }

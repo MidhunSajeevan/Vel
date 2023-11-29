@@ -56,7 +56,7 @@ public class TouchingDirection : MonoBehaviour
         private set
         {
             _isoncelling = value;
-            animator.SetBool(AnimationStrings.IsOnCelling , value);
+            animator.SetBool(AnimationStrings.IsOnCelling , value); 
         }
     }
     private void Awake()

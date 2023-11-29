@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private bool _isMoving=false;
     TouchingDirection touchingDirection;
     private float currentspeed;
+    private Damagable _damagable;
    
     public bool CanMove {  get
         {
@@ -59,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         touchingDirection = GetComponent<TouchingDirection>();  
+        _damagable = GetComponent<Damagable>();
     }
    
     private void FixedUpdate()
@@ -72,7 +74,8 @@ public class PlayerMovement : MonoBehaviour
         if(CanMove)
         {
             currentspeed = touchingDirection.IsOnwall ? 0f : speed;
-            _rigidbody.velocity = new Vector2(_inputMovment.x * currentspeed, _rigidbody.velocity.y);
+            if(!_damagable.IsHit)
+                _rigidbody.velocity = new Vector2(_inputMovment.x * currentspeed, _rigidbody.velocity.y);
             _animator.SetFloat(AnimationStrings.Yvelocity, _rigidbody.velocity.y);
         }
     }
@@ -121,5 +124,9 @@ public class PlayerMovement : MonoBehaviour
         {
             _animator.SetTrigger(AnimationStrings.AttackTrigger);
         }
+    }
+    public void OnHit(int damage , Vector2 knockBack)
+    {
+        _rigidbody.velocity = new Vector2(knockBack.x, _rigidbody.velocity.y+knockBack.y);
     }
 }
