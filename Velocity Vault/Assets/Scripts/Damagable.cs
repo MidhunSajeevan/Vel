@@ -13,7 +13,7 @@ public class Damagable : MonoBehaviour
     private bool _isAlive = true;
     [SerializeField]
     private bool IsInvincible = false;
-
+    public UnityEvent<int> onTakeDamage;    
     public bool IsHit {
         get
         {
@@ -99,10 +99,23 @@ public class Damagable : MonoBehaviour
             IsInvincible = true;
             IsHit = true;
             damagableHit?.Invoke(damage, knockBack);
-
+            onTakeDamage?.Invoke(damage);
+            CharectorEvents.charectorDamaged.Invoke(gameObject, damage);
             return true;
         }
         return false;
     }
-    
+    public bool Heal(int healthResore)
+    {
+        if (IsAlive && Health<_maxHealth)
+        {
+            int Maxheal= Mathf.Max(_maxHealth-Health,0);
+            int actualhealth = Mathf.Max(Maxheal, healthResore);
+            Health += actualhealth;
+            CharectorEvents.charectorHealed.Invoke(gameObject, actualhealth);
+            return true;
+        }
+        return false;
+    }
+   
 }

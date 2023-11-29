@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FadeRemoveBehaviour : StateMachineBehaviour
 {
-    public float fadeTimeOut = 0.05f;
+    public float fadeTimeOut;
     private float TimeElapsed = 0;
     private SpriteRenderer _spriteRenderer;
     private GameObject _gameObject;

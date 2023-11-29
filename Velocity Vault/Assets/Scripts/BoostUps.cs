@@ -5,16 +5,17 @@ using UnityEngine.UI;
 
 public class BoostUps : MonoBehaviour
 {
-    static int boostCount = 0;
-    [SerializeField]
-    private Text pro;
+    public int healthRestore = 20;
+
+   
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        { 
-            Destroy(this.gameObject);
-            boostCount++;
-            pro.text = boostCount.ToString();
+        Damagable damagable = collision.GetComponent<Damagable>();
+        if(damagable)
+        {
+           bool washealed = damagable.Heal(healthRestore);
+            if(washealed)
+                Destroy(gameObject);
         }
     }
 

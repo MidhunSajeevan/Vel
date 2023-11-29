@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
@@ -61,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
         _animator = GetComponent<Animator>();
         touchingDirection = GetComponent<TouchingDirection>();  
         _damagable = GetComponent<Damagable>();
+        _damagable.damagableHit.AddListener(OnHit);
     }
    
     private void FixedUpdate()
@@ -127,6 +129,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void OnHit(int damage , Vector2 knockBack)
     {
+     
         _rigidbody.velocity = new Vector2(knockBack.x, _rigidbody.velocity.y+knockBack.y);
     }
 }
