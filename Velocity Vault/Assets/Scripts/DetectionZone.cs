@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class DetectionZone : MonoBehaviour
 {
-    BoxCollider2D _boxCollider;
+    Collider2D _collider;
     public List<Collider2D> _colliders = new List<Collider2D>();
     private void Awake()
     {
-        _boxCollider = GetComponent<BoxCollider2D>();
+        _collider = GetComponent<Collider2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

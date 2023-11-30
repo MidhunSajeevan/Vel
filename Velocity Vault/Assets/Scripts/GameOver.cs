@@ -14,7 +14,11 @@ public class GameOver : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(player);
-        gameover.SetActive(true);
+        if(collision.CompareTag("Player"))
+        {
+            Destroy(player);
+            gameover.SetActive(true);
+        }
+       
     }
 }

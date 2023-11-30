@@ -12,11 +12,13 @@ public class HealthScriptForBar : MonoBehaviour
         _slider = GetComponent<Slider>();
 
         // Assuming damagable is on the same GameObject as this script
-        damagable = GetComponent<Damagable>();
+        damagable =GameObject.FindGameObjectWithTag("Player").GetComponent<Damagable>();
         
         if (damagable != null)
         {
             damagable.onTakeDamage.AddListener(TakeDamage);
+            damagable.onHealthRestored.AddListener(HealthResore);
+            damagable.onHealthRestored.AddListener(HealthResore);
         }
     }
 
@@ -24,6 +26,11 @@ public class HealthScriptForBar : MonoBehaviour
     {
 
         _slider.value -= damageAmount;
+        UpdateHealthColor();
+    }
+    public void HealthResore(int Health)
+    {
+        _slider.value += Health;
         UpdateHealthColor();
     }
     void UpdateHealthColor()
