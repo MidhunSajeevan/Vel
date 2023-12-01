@@ -25,12 +25,12 @@ public class HealthScriptForBar : MonoBehaviour
     public void TakeDamage(int damageAmount)
     {
 
-        _slider.value -= damageAmount;
+        _slider.value = damageAmount;
         UpdateHealthColor();
     }
     public void HealthResore(int Health)
     {
-        _slider.value += Health;
+        _slider.value = Health;
         UpdateHealthColor();
     }
     void UpdateHealthColor()

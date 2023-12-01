@@ -100,7 +100,7 @@ public class Damagable : MonoBehaviour
             IsInvincible = true;
             IsHit = true;
             damagableHit?.Invoke(damage, knockBack);
-            onTakeDamage?.Invoke(damage);
+            onTakeDamage?.Invoke(Health);
             CharectorEvents.charectorDamaged.Invoke(gameObject, damage);
             return true;
         }

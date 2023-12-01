@@ -59,7 +59,7 @@ public class EnemyMovements : MonoBehaviour
             _animator.SetBool(AnimationStrings.HasTarget, value);
         }
     }
-    
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
