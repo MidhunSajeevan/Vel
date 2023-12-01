@@ -7,16 +7,11 @@ public class HealthText : MonoBehaviour
 {
     public Vector3 moveSpeed = new Vector3(0, 75, 0);
     public RectTransform textTransform;
-    private TextMeshProUGUI textMeshPro;
+    public TextMeshProUGUI textMeshPro;
     private float TimeElapsed = 0;
     private float TimeToFade = 2f;
-    private Color startColor;
-    private void Awake()
-    {
-        textTransform = GetComponent<RectTransform>();
-        textMeshPro = GetComponent<TextMeshProUGUI>();
-        startColor = textMeshPro.color;
-    }
+    public Color startColor;
+   
     // Update is called once per frame
     void Update()
     {
@@ -29,8 +24,10 @@ public class HealthText : MonoBehaviour
             textMeshPro.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
         }
         else
-        {
-            Destroy(gameObject);
+        { 
+                Destroy(gameObject);
+          
+            
         }
        
     }

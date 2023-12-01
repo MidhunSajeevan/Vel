@@ -9,10 +9,12 @@ public class UiManager : MonoBehaviour
     public GameObject damageTextPrefab;
     public GameObject healthTextPrefab;
 
-    public Canvas GameCanvas;
+     Canvas GameCanvas;
+    [SerializeField]
+    private GameObject GameCanvasGameobject;
     private void Awake()
     {
-        GameCanvas = GameObject.Find("GameCanvas").GetComponent<Canvas>();
+        GameCanvas = GameCanvasGameobject.GetComponent<Canvas>();
     }
     private void OnEnable()
     {
