@@ -12,7 +12,7 @@ public class UiManager : MonoBehaviour
     public Canvas GameCanvas;
     private void Awake()
     {
-        GameCanvas = FindObjectOfType<Canvas>();
+        GameCanvas = GameObject.Find("GameCanvas").GetComponent<Canvas>();
     }
     private void OnEnable()
     {
