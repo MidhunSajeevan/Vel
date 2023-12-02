@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FadeRemoveBehaviour : StateMachineBehaviour
@@ -29,7 +27,16 @@ public class FadeRemoveBehaviour : StateMachineBehaviour
         _spriteRenderer.color = new Color(_color.r, _color.g, _color.b, newAlpha);
         if (TimeElapsed > fadeTimeOut)
         {
-            Destroy(_gameObject);
+            if(_gameObject.CompareTag("Player"))
+            {
+                CharectorEvents.playerDead.Invoke();
+            }
+            else
+            {
+                Destroy(_gameObject);
+            }
+           
+            
         }
     }
 
