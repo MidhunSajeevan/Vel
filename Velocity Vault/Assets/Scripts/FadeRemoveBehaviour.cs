@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FadeRemoveBehaviour : StateMachineBehaviour
 {
@@ -7,7 +8,7 @@ public class FadeRemoveBehaviour : StateMachineBehaviour
     private SpriteRenderer _spriteRenderer;
     private GameObject _gameObject;
     private Color _color;
-
+ 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -34,6 +35,7 @@ public class FadeRemoveBehaviour : StateMachineBehaviour
             else
             {
                 Destroy(_gameObject);
+      
             }
            
             

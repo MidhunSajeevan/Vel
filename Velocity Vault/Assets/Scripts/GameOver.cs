@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameOver : MonoBehaviour
 {
     private GameObject player;
-    [SerializeField]
-    private GameObject gameover;
+    public UnityEvent OnGameOver;
     
     private void Awake()
     {
@@ -24,7 +24,8 @@ public class GameOver : MonoBehaviour
     void Endthegame()
     {
         Destroy(player);
-        gameover.SetActive(true);
+        OnGameOver?.Invoke();
+
     }
     private void OnEnable()
     {
