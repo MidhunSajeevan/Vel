@@ -80,8 +80,8 @@ public class Timer : MonoBehaviour
         {
             _timer = 0;
             UpdateDisplay(_timer);
-      
-          //  FindObjectOfType<GameEventSystem>().TriggerGameOverEvent();
+            
+            FindObjectOfType<GameOver>().OnGameOver.Invoke();
         }
     }
     private void settextDisplay(bool enabled)
@@ -104,10 +104,10 @@ public class Timer : MonoBehaviour
     }
     private void DisplayHighScore()
     {
-        float currentHighScore = PlayerPrefs.GetFloat("HighScore",120);
+        float currentHighScore = PlayerPrefs.GetFloat("HighScore");
 
       
-        if (_timer < currentHighScore)
+        if (_timer > currentHighScore)
         {
             PlayerPrefs.SetFloat("HighScore", _timer);
             PlayerPrefs.Save();

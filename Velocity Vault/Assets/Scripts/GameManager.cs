@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     private bool _isFinished = false;
     public Button _nextButton;
     public UnityEvent GameFinished;
+  
 
    public bool IsFinished
     {

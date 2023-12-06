@@ -15,6 +15,19 @@ public class Damagable : MonoBehaviour
     private bool IsInvincible = false;
     public UnityEvent<int> onTakeDamage;
     public UnityEvent<int> onHealthRestored;
+
+    private static int enemyCount = 0;
+
+    public static int EnemyCount
+    {
+        get { return enemyCount; }
+    }
+
+    private void OnDestroy()
+    {
+        enemyCount++;
+    }
+
     public bool IsHit {
         get
         {

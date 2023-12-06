@@ -1722,7 +1722,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278255424
-  m_fontColor: {r: 0.25185084, g: 1, b: 0, a: 1}
+  m_fontColor: {r: 0.9245283, g: 0.11774653, b: 0.1381062, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2218,6 +2218,7 @@ GameObject:
   - component: {fileID: 2275122050410803685}
   - component: {fileID: 19894829785190782}
   - component: {fileID: 1150277766669252682}
+  - component: {fileID: 5039331815399365140}
   m_Layer: 5
   m_Name: AchivementsDetails
   m_TagString: Untagged
@@ -2284,6 +2285,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5039331815399365140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7354582860989878673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a290b242d9721f14eb5a7bfc4184b467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _diamond: {fileID: 141132295973227475}
+  _timeTaken: {fileID: 1317737911980764318}
+  _lifeRemaining: {fileID: 5441765966535110361}
+  _Kills: {fileID: 9128335570770693387}
 --- !u!1 &7382802267442938619
 GameObject:
   m_ObjectHideFlags: 0
