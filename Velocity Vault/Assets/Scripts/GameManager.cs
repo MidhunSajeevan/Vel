@@ -8,9 +8,10 @@ public class GameManager : MonoBehaviour
     private bool _isFinished = false;
     public Button _nextButton;
     public UnityEvent GameFinished;
-  
-
-   public bool IsFinished
+    private PlayerMovement player;
+    [HideInInspector]
+    public VolumeSettings volumeSettings;
+    public bool IsFinished
     {
         get
         {
@@ -22,6 +23,8 @@ public class GameManager : MonoBehaviour
     {
         IsFinished = false;
         _nextButton.interactable = false;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        volumeSettings = GameObject.FindGameObjectWithTag("VolumSettings").GetComponent<VolumeSettings>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -30,11 +33,19 @@ public class GameManager : MonoBehaviour
       
         if (collision.gameObject.CompareTag("Player"))
         {
-            //  SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
-            _nextButton.interactable= true;
-            PlayerPrefs.SetInt("Unlocklevel", SceneManager.GetActiveScene().buildIndex + 1);
-            IsFinished = true;
-            GameFinished?.Invoke();
+            if (SceneManager.GetActiveScene().buildIndex == 15)
+            {
+               SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+            }
+            else
+            {
+                _nextButton.interactable = true;
+                PlayerPrefs.SetInt("Unlocklevel", SceneManager.GetActiveScene().buildIndex + 1);
+                IsFinished = true;
+                GameFinished?.Invoke();
+            }
+
+     
         }
     }
     public void Play()
@@ -72,5 +83,9 @@ public class GameManager : MonoBehaviour
     public void Levels()
     {
         SceneManager.LoadScene("LevelScene");
+    }
+    public void MuteAudio(bool value)
+    {
+        volumeSettings.MuteAudio(value);
     }
 }

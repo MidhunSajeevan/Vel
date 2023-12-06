@@ -46,4 +46,8 @@ public class VolumeSettings : MonoBehaviour
         }
         
     }
+    public void MuteAudio(bool value)
+    {
+        volumeSource.mute = value;
+    }
 }

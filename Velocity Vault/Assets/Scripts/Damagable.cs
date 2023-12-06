@@ -125,7 +125,7 @@ public class Damagable : MonoBehaviour
         {
             int Maxheal= Mathf.Max(_maxHealth-Health,0);
             int actualhealth = Mathf.Max(Maxheal, healthResore);
-            Health += actualhealth;
+            Health += actualhealth; 
             onHealthRestored?.Invoke(Health);
             CharectorEvents.charectorHealed.Invoke(gameObject, actualhealth);
             return true;

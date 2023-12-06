@@ -14,7 +14,8 @@ public class PlayerMovement : MonoBehaviour
     TouchingDirection touchingDirection;
     private float currentspeed;
     private Damagable _damagable;
-   
+
+  
     public bool CanMove {  get
         {
             return _animator.GetBool(AnimationStrings.CanMove);
