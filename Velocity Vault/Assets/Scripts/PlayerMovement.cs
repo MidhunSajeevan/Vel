@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private float currentspeed;
     private Damagable _damagable;
 
-  
+                       
     public bool CanMove {  get
         {
             return _animator.GetBool(AnimationStrings.CanMove);
@@ -35,17 +35,18 @@ public class PlayerMovement : MonoBehaviour
   
 
     public bool IsFacingRight 
-        { get
+        {    get
              {
                return _isfacingRight;
-             } private set
-                 {
+             }
+            private set
+             {
                  if( _isfacingRight != value )
                  {
                    transform.localScale *= new Vector2(-1, 1);
                  }
                  _isfacingRight = value;
-              }
+             }
            
          }
 

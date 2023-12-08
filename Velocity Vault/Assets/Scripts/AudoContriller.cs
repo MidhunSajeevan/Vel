@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class VolumeSettings : MonoBehaviour
 {
-    // Static variable to store volume across scenes
+   
   
     private  float volume = 1.0f;
 
@@ -11,6 +11,7 @@ public class VolumeSettings : MonoBehaviour
   //  [SerializeField]
     private  Slider volumeSlider;
 
+    // Static variable to store volume across scenes
     private static  AudioSource volumeSource;
     private void Start()
     {
